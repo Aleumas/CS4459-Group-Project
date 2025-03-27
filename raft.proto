@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+service RaftService {
+
+  rpc SendVoteRequest(VoteRequest) returns (VoteResponse);
+  rpc SendLogRequestAsLeader(LogRequest) returns (LogResponse);
+}
+
+message VoteRequest {
+  string key = 1;
+  string value = 2;
+}
+
+message VoteResponse {
+  string ack = 1;
+}
+
+message LogRequest {
+  string key = 1;
+  string value = 2;
+}
+
+message LogResponse {
+  string ack = 1;
+}
