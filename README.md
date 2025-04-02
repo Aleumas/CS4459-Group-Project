@@ -37,7 +37,7 @@ This system implements a simple fault-tolerant key-value store using the RAFT co
 
 1. **Install Dependencies**
 ```bash
-source env/bin/activate
+source venv/bin/activate
 ```
 
 2. **Start the Discovery Server**
