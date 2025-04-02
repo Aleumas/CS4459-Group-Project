@@ -33,25 +33,36 @@ This system implements a simple fault-tolerant key-value store using the RAFT co
 
 ## How to Run the System
 
-### 1. Start the Discovery Server
+### If you're on Unix/Linux, then to run the system with 4 nodes just:
+
+1. **Install Dependencies**
 ```bash
-python discovery_server.py
+source venv/bin/activate
 ```
 
-### 2. Start Nodes (in separate terminals)
+2. **Start the Discovery Server**
 ```bash
-python raft_node.py node1 node2,node3
-python raft_node.py node2 node1,node3
-python raft_node.py node3 node1,node2
+python discovery.py
 ```
 
-### 3. Start the Client
+3. **Start Nodes (in separate terminals)**
+```bash
+python raft.py node1 50051 node2,node3,node4
+python raft.py node2 50052 node1,node3,node4
+python raft.py node3 50053 node1,node2,node4
+python raft.py node4 50054 node1,node2,node3
+```
+
+4. **Start the Client**
 ```bash
 python client.py
 ```
 
----
+### If you're on Windows, then to run with 4 nodes just double click the .bat file:
+```
+.bat
+```
 
 Each node stores its state in `node_state_<node_id>.json`. The client logs to `client.txt`.
 
-For a minimal 3-node RAFT cluster, this setup provides leader election, log replication, and simple fault tolerance.
+For a minimal 4-node RAFT cluster, this setup provides leader election, log replication, and simple fault tolerance.
