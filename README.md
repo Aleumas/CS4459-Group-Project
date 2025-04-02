@@ -33,9 +33,29 @@ This system implements a simple fault-tolerant key-value store using the RAFT co
 
 ## How to Run the System
 
-### If you're on Unix/Linux, then to run the system with 4 nodes just double click the .sh file:
+### If you're on Unix/Linux, then to run the system with 4 nodes just:
+
+1. **Install Dependencies**
+```bash
+source env/bin/activate
 ```
-.sh
+
+2. **Start the Discovery Server**
+```bash
+python discovery.py
+```
+
+3. **Start Nodes (in separate terminals)**
+```bash
+python raft.py node1 50051 node2,node3,node4
+python raft.py node2 50052 node1,node3,node4
+python raft.py node3 50053 node1,node2,node4
+python raft.py node4 50054 node1,node2,node3
+```
+
+4. **Start the Client**
+```bash
+python client.py
 ```
 
 ### If you're on Windows, then to run with 4 nodes just double click the .bat file:
