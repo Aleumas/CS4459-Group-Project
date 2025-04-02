@@ -44,9 +44,9 @@ class Node:
             while True:
                 time.sleep(1)
                 if self.currentRole == Role.FOLLOWER:
-                    print(f"👂 {self.node_id} has last heartbeat at {self.last_heartbeat}")
+                    print(f"{self.node_id} has last heartbeat at {self.last_heartbeat}")
                     if time.time() - self.last_heartbeat > self.election_timeout:
-                        print(f"🗳️ {self.node_id} is starting an election (timeout)")
+                        print(f"{self.node_id} is starting an election (timeout)")
                         self.leaderFailedOrElectionTimeout()
         threading.Thread(target=monitor, daemon=True).start()
 
@@ -95,9 +95,9 @@ class Node:
                     port=50050 + int(self.node_id[-1])
                 )
                 stub.UpdateLeader(request)
-                print(f"🔔 Notified discovery service: I am the leader ({self.node_id})")
+                print(f"Notified discovery service: I am the leader ({self.node_id})")
         except Exception as e:
-            print(f"❌ Failed to notify discovery service: {e}")
+            print(f"Failed to notify discovery service: {e}")
 
     def sendVoteRequests(self):
         for peer in self.peer_ids:

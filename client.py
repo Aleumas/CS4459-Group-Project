@@ -12,7 +12,7 @@ def get_leader():
             response = stub.WhoIsLeader(discovery_pb2.Empty())
             return response.host, response.port
     except Exception as e:
-        print(f"❌ Failed to discover leader: {e}")
+        print(f"Failed to discover leader: {e}")
         return None, None
 
 def send_request(stub, key, value):
@@ -22,13 +22,13 @@ def send_request(stub, key, value):
 
         if response.ack == "true":
             log(key, value)
-            print(f"✅ Committed: {key} -> {value}")
+            print(f"Committed: {key} -> {value}")
         elif response.ack == "not_leader":
-            print(f"⚠️ Not the leader. Leader is: {response.leader_id}")
+            print(f"Not the leader. Leader is: {response.leader_id}")
         else:
-            print("❌ Log rejected or not committed")
+            print("Log rejected or not committed")
     except Exception as e:
-        print(f"❌ Error during request: {e}")
+        print(f"Error during request: {e}")
 
 
 def log(key, value):
@@ -54,7 +54,7 @@ def run():
                 counter += 1
                 time.sleep(5)
         except Exception as e:
-            print(f"❌ Connection error: {e}. Retrying...")
+            print(f"Connection error: {e}. Retrying...")
             time.sleep(5)
 
 run()

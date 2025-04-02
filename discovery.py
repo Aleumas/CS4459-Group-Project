@@ -11,7 +11,7 @@ class LeaderDiscoveryService(discovery_pb2_grpc.LeaderDiscoveryServicer):
         self.port = 50051
 
     def WhoIsLeader(self, request, context):
-        print(f"📢 Current Leader: {self.leader_id} at {self.host}:{self.port}")
+        print(f"Current Leader: {self.leader_id} at {self.host}:{self.port}")
         return discovery_pb2.LeaderInfo(
             leader_id=self.leader_id,
             host=self.host,
@@ -22,7 +22,7 @@ class LeaderDiscoveryService(discovery_pb2_grpc.LeaderDiscoveryServicer):
         self.leader_id = request.leader_id
         self.host = request.host
         self.port = request.port
-        print(f"🔄 Leader updated: {self.leader_id} at {self.host}:{self.port}")
+        print(f"Leader updated: {self.leader_id} at {self.host}:{self.port}")
         return discovery_pb2.Empty()
 
 
