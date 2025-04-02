@@ -35,14 +35,14 @@ This system implements a simple fault-tolerant key-value store using the RAFT co
 
 ### 1. Start the Discovery Server
 ```bash
-python discovery_server.py
+python discovery.py
 ```
 
 ### 2. Start Nodes (in separate terminals)
 ```bash
-python raft_node.py node1 node2,node3
-python raft_node.py node2 node1,node3
-python raft_node.py node3 node1,node2
+python raft.py node1 50051 node2,node3
+python raft.py node2 50052 node1,node3
+python raft.py node3 50053 node1,node2
 ```
 
 ### 3. Start the Client
