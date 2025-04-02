@@ -73,7 +73,8 @@ class Node:
     def receivingVoteResponse(self, vote_granted):
         if vote_granted:
             self.votesReceived.add(vote_granted)
-        if len(self.votesReceived) > len(self.peer_ids) // 2:
+        if len(self.votesReceived) > (len(self.peer_ids) + 1) // 2:
+            print(f"votesReceived: {self.votesReceived} len(self.peer_ids): {len(self.peer_ids)}")
             self.becomeLeader()
 
     def becomeLeader(self):
@@ -110,7 +111,9 @@ class Node:
                     if response.ack == "granted":
                         self.receivingVoteResponse(peer)
             except Exception as e:
-                print(f"Failed to contact {peer}: {e}")
+                print(f"Failed to contact {peer}")
+        if self.currentRole == Role.CANDIDATE:
+            self.currentRole = Role.FOLLOWER
 
     def leaderUpdate(self):
         while self.currentRole == Role.LEADER:

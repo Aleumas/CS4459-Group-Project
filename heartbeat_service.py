@@ -21,6 +21,7 @@ class ViewService(heartbeat_service_pb2_grpc.ViewServiceServicer):
         self.last_received[identifier] = datetime.now()
         self.log(identifier, True)
 
+        # function self.check_health will be run in 5.2 seconds
         timer = threading.Timer(5.2, self.fail_check_health, args=[identifier])
         timer.daemon = True
 

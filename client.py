@@ -54,7 +54,7 @@ def run():
                 counter += 1
                 time.sleep(5)
         except Exception as e:
-            print(f"❌ Connection error: {e}. Retrying...")
+            print(f"❌ Connection error. Retrying...")
             time.sleep(5)
 
 run()
