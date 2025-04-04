@@ -58,8 +58,12 @@ python raft.py node4 50054 node1,node2,node3
 python client.py
 ```
 
-### If you're on Windows, then to run with 4 nodes just double click the .bat file:
+### If you're on Windows, then install the dependencies below. then to run with 4 nodes just double click the .bat file:
 ```
+py -m venv venv\
+venv\Scripts\activate
+pip install grpcio-tools
+pip install grpcio
 .bat
 ```
 
